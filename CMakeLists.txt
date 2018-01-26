@@ -119,7 +119,7 @@ EXTERNALPROJECT_ADD(
   URL ${CMAKE_SOURCE_DIR}/vendor/x264-snapshot-20170716-2245-stable.tar.bz2
   PATCH_COMMAND ${CMAKE_SOURCE_DIR}/patches/patch-manager.sh x264
   CONFIGURE_COMMAND PATH=$ENV{PATH} ./configure --prefix=${CMAKE_BINARY_DIR} --enable-static
-  BUILD_COMMAND PATH=$ENV{PATH} make
+  BUILD_COMMAND PATH=$ENV{PATH} make -j`nproc --all`
   BUILD_IN_SOURCE 1
 )
 EXTERNALPROJECT_ADD(
@@ -130,7 +130,7 @@ EXTERNALPROJECT_ADD(
   URL ${CMAKE_SOURCE_DIR}/vendor/x265_2.5.tar.gz
   PATCH_COMMAND ${CMAKE_SOURCE_DIR}/patches/patch-manager.sh x265
   CONFIGURE_COMMAND cd build/linux && PATH=$ENV{PATH} cmake -G "Unix Makefiles" -D CMAKE_INSTALL_PREFIX:PATH=${CMAKE_BINARY_DIR} -D ENABLE_CLI:BOOL=OFF -D ENABLE_SHARED:BOOL=OFF ../../source
-  BUILD_COMMAND cd build/linux && PATH=$ENV{PATH} make
+  BUILD_COMMAND cd build/linux && PATH=$ENV{PATH} make -j`nproc --all`
   INSTALL_COMMAND cd build/linux && PATH=$ENV{PATH} make install
   BUILD_IN_SOURCE 1
 )
@@ -141,7 +141,7 @@ EXTERNALPROJECT_ADD(
   URL ${CMAKE_SOURCE_DIR}/vendor/libvpx-1.6.1.tar.bz2
   PATCH_COMMAND ${CMAKE_SOURCE_DIR}/patches/patch-manager.sh libvpx
   CONFIGURE_COMMAND PATH=$ENV{PATH} ./configure --prefix=${CMAKE_BINARY_DIR} --disable-shared
-  BUILD_COMMAND PATH=$ENV{PATH} make
+  BUILD_COMMAND PATH=$ENV{PATH} make -j`nproc --all`
   BUILD_IN_SOURCE 1
 )
 EXTERNALPROJECT_ADD(
@@ -197,7 +197,7 @@ EXTERNALPROJECT_ADD(
   URL ${CMAKE_SOURCE_DIR}/vendor/libass-0.13.6.tar.gz
   PATCH_COMMAND ${CMAKE_SOURCE_DIR}/patches/patch-manager.sh libass
   CONFIGURE_COMMAND PATH=$ENV{PATH} PKG_CONFIG_PATH=$ENV{PKG_CONFIG_PATH} ./configure --prefix=${CMAKE_BINARY_DIR} --disable-shared --enable-static
-  BUILD_COMMAND PATH=$ENV{PATH} make
+  BUILD_COMMAND PATH=$ENV{PATH} make -j`nproc --all`
   BUILD_IN_SOURCE 1
 )
 EXTERNALPROJECT_ADD(
