@@ -29,7 +29,7 @@ EXTERNALPROJECT_ADD(
   URL ${CMAKE_SOURCE_DIR}/vendor/openssl-1.0.2-latest.tar.gz
   PATCH_COMMAND ${CMAKE_SOURCE_DIR}/patches/patch-manager.sh openssl
   CONFIGURE_COMMAND ./config no-shared no-idea no-mdc2 no-rc5 --prefix=${CMAKE_BINARY_DIR}
-  BUILD_COMMAND make depend && make
+  BUILD_COMMAND make depend && make -j`nproc --all`
   INSTALL_COMMAND make install_sw
   BUILD_IN_SOURCE 1
 )
